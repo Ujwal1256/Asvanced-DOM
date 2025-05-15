@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 16</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+      
+    </style>
+</head>
+<body>
+    <h1>Iterating Over Array of Objects and Creating a Grid View with Conditional Styling</h1>
+    <div class="container">
+    </div>
+
+    <script>
+        const products = [
+  { id: 1, name: "Product A", price: 50, inStock: true },
+  { id: 2, name: "Product B", price: 30, inStock: false },
+  { id: 3, name: "Product C", price: 70, inStock: true },
+  { id: 4, name: "Product D", price: 20, inStock: false }
+];
+        const container = document.querySelector('.container');
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.style.border = '1px solid #ccc';
+            productDiv.style.padding = '10px';
+            productDiv.style.borderRadius = '5px';
+            productDiv.style.color = '#fff';
+            productDiv.style.backgroundColor = product.inStock ? 'green' : 'red';
+
+            const name = document.createElement('h2');
+            name.textContent = product.name;
+            productDiv.appendChild(name);
+
+            const price = document.createElement('p');
+            price.textContent = `Price: $${product.price}`;
+            productDiv.appendChild(price);
+
+            const stockStatus = document.createElement('p');
+            stockStatus.textContent = product.inStock ? 'In Stock' : 'Out of Stock';
+            productDiv.appendChild(stockStatus);
+
+            container.appendChild(productDiv);
+        });
+    </script>
+</body>
+</html>
