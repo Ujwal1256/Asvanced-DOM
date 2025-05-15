@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakstore API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fakestore API</h1>
+    <div class="container">
+    </div>
+
+    <script>
+        let apiurl  = "https://fakestoreapi.com/products"
+
+        fetch(apiurl)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.querySelector('.container');
+                data.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    
+                    productDiv.style.padding = "10px";
+                    productDiv.style.backgroundColor = "#fff";
+                    productDiv.innerHTML = `
+                        <h2>${product.title}</h2>
+                        <img src="${product.image}" alt="${product.title}" style="width: 100%;">
+                        <p>Price: $${product.price}</p>
+                    `;
+
+                    productDiv.style.border = product.price >= 50?"10px solid green":"10px solid yellow";
+                    container.appendChild(productDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
