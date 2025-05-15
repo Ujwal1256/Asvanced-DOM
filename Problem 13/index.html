@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation Exploration</title>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Propagation Exploration</h1>
+    <div id="parent-div">
+        <button id="first-btn">First Button</button>
+        <div id="second-div">
+            <button id="second-btn">Second Button</button>
+            <div id="third-div">
+                <button id="third-btn">Third Button</button>
+            </div><br>
+        </div><br>
+    </div>
+
+  <script>
+        // Select the buttons and divs
+        const firstBtn = document.getElementById('first-btn');
+        const secondBtn = document.getElementById('second-btn');
+        const thirdBtn = document.getElementById('third-btn');
+        const parentDiv = document.getElementById('parent-div');
+        const secondDiv = document.getElementById('second-div');
+        const thirdDiv = document.getElementById('third-div');
+
+        // Event handler for the first button
+        firstBtn.addEventListener('click', (event) => {
+            alert("First Button Clicked");
+            event.stopPropagation(); // Stop the event from propagating to parent elements
+        });
+
+        // Event handler for the second button
+        secondBtn.addEventListener('click', (event) => {
+            alert("Second Button Clicked");
+            event.stopPropagation(); // Stop the event from propagating to parent elements
+        });
+
+        // Event handler for the third button
+        thirdBtn.addEventListener('click', (event) => {
+            alert("Third Button Clicked");
+            event.stopPropagation(); // Stop the event from propagating to parent elements
+        });
+
+        // Event handler for the parent div
+        parentDiv.addEventListener('click', () => {
+            alert("Parent Div Clicked");
+        });
+
+        // Event handler for the second div
+        secondDiv.addEventListener('click', () => {
+            alert("Second Div Clicked");
+        });
+
+        // Event handler for the third div
+        thirdDiv.addEventListener('click', () => {
+            alert("Third Div Clicked");
+        });
+    </script>
+</body>
+</html>
